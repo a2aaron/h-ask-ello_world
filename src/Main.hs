@@ -34,6 +34,10 @@ isPrime 1 = False
 -- We also generate a list of Bools where the bool is (x being coprime to a)
 -- where a iterates from 2 to (x - 1)
 -- If all of these values are coprime then we know that x is prime
-isPrime x = foldr (&&) True [x `coprimeTo` a | a <- [2..(x - 1)]]
+isPrime x = foldr (&&) True [x `coprimeTo` a | a <- [2..intSqrt x]]
+
+intSqrt :: Integral i => i -> i
+
+intSqrt x = floor (sqrt (fromIntegral x))
 
 coprimeTo a b = a `mod` b /= 0
